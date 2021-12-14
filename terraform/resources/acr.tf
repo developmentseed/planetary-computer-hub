@@ -16,9 +16,9 @@
 # }
 
 # add the role to the identity the kubernetes cluster was assigned
-resource "azurerm_role_assignment" "attach_acr" {
-  # scope                = azurerm_container_registry.container_registry.id
-  scope                = "/subscriptions/9da7523a-cb61-4c3e-b1d4-afa5fc6d2da9/resourceGroups/pcc-westeurope-rg/providers/Microsoft.ContainerRegistry/registries/pcccr"
-  role_definition_name = "AcrPull"
-  principal_id         = azurerm_kubernetes_cluster.pc_compute.kubelet_identity[0].object_id
-}
+//resource "azurerm_role_assignment" "attach_acr" {
+//  # scope                = azurerm_container_registry.container_registry.id
+//  scope                = "/subscriptions/9da7523a-cb61-4c3e-b1d4-afa5fc6d2da9/resourceGroups/pcc-westeurope-rg/providers/Microsoft.ContainerRegistry/registries/pcccr"
+//  role_definition_name = "AcrPull"
+//  principal_id         = azurerm_kubernetes_cluster.pc_compute.kubelet_identity[0].object_id
+//}

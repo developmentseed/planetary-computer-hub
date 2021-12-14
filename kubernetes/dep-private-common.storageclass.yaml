@@ -1,0 +1,12 @@
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: dep-private-common
+provisioner: file.csi.azure.com
+parameters:
+  resourceGroup: dep-pc-main-rg
+  storageAccount: deppcprivatestorage
+  shareName: common
+reclaimPolicy: Retain  # If set as "Delete" container would be removed after pvc deletion
+volumeBindingMode: Immediate

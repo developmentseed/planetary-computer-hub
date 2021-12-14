@@ -16,25 +16,29 @@ daskhub:
     hub:
       baseUrl: "/compute/"
       image:
-        name: pcccr.azurecr.io/jupyterhub/k8s-hub
-        tag: "1.0.1.post0"
+        name: jupyterhub/k8s-hub
+        tag: "1.0.1"
 
       config:
         JupyterHub:
           admin_access: false
           admin_users:
-            - taugspurger@microsoft.com
+            - alex@developmentseed.org
+            - alexbush@developmentseed.org
 
           authenticator_class: generic-oauth
         GenericOAuthenticator:
-          # oauth_callback_url, client_secret are set via terraform.
-          client_id: "YRKd72gJAcBEQMyyz8QnT9luJNKoRcCnF7TL4ffx"
-          login_service: 'planetarycomputer'
-          userdata_url: 'https://planetarycomputer.microsoft.com/id/users/userdata'
-          token_url: 'https://planetarycomputer.microsoft.com/id/o/token/'
-          authorize_url: 'https://planetarycomputer.microsoft.com/id/o/authorize/'
-          username_key: 'email'
-          userdata_method: 'GET'
+          client_id: "KsF8JRehUgWVe9X2vLSu4u2p13Xm89np"
+          oauth_callback_url: "https://dep-pccompute.westeurope.cloudapp.azure.com/compute/hub/oauth_callback"
+          username_key: "email"
+          authorize_url: "https://dev-3bb54g9o.us.auth0.com/authorize"
+          token_url: "https://dev-3bb54g9o.us.auth0.com/oauth/token"
+          userdata_url: "https://dev-3bb54g9o.us.auth0.com/userinfo"
+          scope:
+            - openid
+            - name
+            - profile
+            - email
 
       extraEnv:
         # This service principal has read permission on Azure API management.
@@ -92,66 +96,12 @@ daskhub:
           c.KubeSpawner.environment["DASK_GATEWAY__PUBLIC_ADDRESS"] = "https://${jupyterhub_host}/compute/services/dask-gateway/"
         templates: |
           c.JupyterHub.template_paths.insert(0, "/etc/jupyterhub/templates")
-        pre_spawn_hook: |
-          # Configure environment tailored to the specific user
-          # Sets the following
-          # 1. environment variable PC_SDK_SUBSCRIPTION_KEY
-          # ---------------------------------------------------
-
-          async def pre_spawn_hook(spawner):
-              username = spawner.user.name
-              # `username` is an email address. We use that email address to look up the
-              # user in the Django App
-              import os
-              import requests
-              import azure.identity
-              import azure.mgmt.apimanagement
-              from traitlets.log import get_logger
-
-              log = get_logger()
-              log.info("starting pre_spawn_hook for %s" % username)
-              # The hub is configured with "service principal with secret" environment variables.
-              identity = azure.identity.EnvironmentCredential()
-              PC_ID_TOKEN = os.environ["PC_ID_TOKEN"]
-
-              r = requests.get(
-                  f"https://planetarycomputer.microsoft.com/id/users/users/{username}/",
-                  headers=dict(Authorization="Token %s" % PC_ID_TOKEN)
-              )
-              if r.status_code != 200:
-                  log.warning("pre_spawn_hook failed getting the user ID for %s. -- %s",
-                              username, r.content)
-                  return
-
-              pk = r.json()["pk"]
-              log.debug("Got PK %s", pk)
-              # This PK should match the PK in API management.
-              # The Hub pod is configured to talk to API Management
-              identity = azure.identity.DefaultAzureCredential()
-              apim_client = azure.mgmt.apimanagement.ApiManagementClient(
-                  identity,
-                  "9da7523a-cb61-4c3e-b1d4-afa5fc6d2da9"
-              )
-
-              # We can now request the subscription. These follow the pattern
-              # {id}-planetarycomputer
-              try:
-                  log.info("Getting subscriptions for %s-%s", username, pk)
-                  keys = apim_client.subscription.list_secrets(
-                      "pc-manual-resources", "planetarycomputer", f"{pk}-planetarycomputer"
-                  )
-              except Exception as e:
-                  log.exception("Failed to get secrets for %s", username)
-              else:
-                  spawner.environment["PC_SDK_SUBSCRIPTION_KEY"] = keys.primary_key
-
-          c.KubeSpawner.pre_spawn_hook = pre_spawn_hook
 
     proxy:
       https:
         enabled: true
         letsencrypt:
-          contactEmail: "taugspurger@microsoft.com"
+          contactEmail: "alexbush@developmentseed.org"
 
     singleuser:
       # These limits match the "large" profiles, so that a user requesting large will be successfully scheduled.
@@ -166,6 +116,10 @@ daskhub:
       storage:
         capacity: "15Gi"
         extraVolumes:
+          - name: common
+            persistentVolumeClaim:
+              claimName: common-file-pvc
+
           - name: user-etc-singleuser
             configMap:
               name: user-etc-singleuser
@@ -194,6 +148,9 @@ daskhub:
 
           - name: dshm
             mountPath: /dev/shm
+
+          - name: common
+            mountPath: /home/jovyan/common
 
           - name: driven-data
             mountPath: /driven-data/

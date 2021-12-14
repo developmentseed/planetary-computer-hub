@@ -16,11 +16,6 @@ data "azurerm_key_vault_secret" "id_client_secret" {
   key_vault_id = data.azurerm_key_vault.deploy_secrets.id
 }
 
-data "azurerm_key_vault_secret" "pc_id_token" {
-  name         = "${local.stack_id}--pc-id-token"
-  key_vault_id = data.azurerm_key_vault.deploy_secrets.id
-}
-
 # API Management integration
 data "azurerm_key_vault_secret" "azure_client_secret" {
   name         = "${local.stack_id}--azure-client-secret"

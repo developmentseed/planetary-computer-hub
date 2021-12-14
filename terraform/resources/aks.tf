@@ -1,8 +1,8 @@
 resource "azurerm_kubernetes_cluster" "pc_compute" {
-  name                = "${local.maybe_staging_prefix}-cluster"
+  name                = "${local.prefix}-cluster"
   location            = azurerm_resource_group.pc_compute.location
   resource_group_name = azurerm_resource_group.pc_compute.name
-  dns_prefix          = "${local.maybe_staging_prefix}-cluster"
+  dns_prefix          = "${local.prefix}-cluster"
   kubernetes_version  = var.kubernetes_version
   sku_tier            = "Paid"
 
@@ -21,8 +21,7 @@ resource "azurerm_kubernetes_cluster" "pc_compute" {
     name            = "core"
     vm_size         = var.core_vm_size
     os_disk_size_gb = 100
-    # Managed for staging, since A-series VM don't support Ephemeral
-    os_disk_type        = var.environment == "staging" ? "Managed" : "Ephemeral"
+    os_disk_type        = "Managed"
     enable_auto_scaling = true
     node_count          = 1
     min_count           = 1
@@ -51,9 +50,9 @@ resource "azurerm_kubernetes_cluster" "pc_compute" {
     ManagedBy   = "AI4E"
   }
 
-  lifecycle {
-    prevent_destroy = true
-  }
+//  lifecycle {
+//    prevent_destroy = true
+//  }
 }
 
 resource "azurerm_kubernetes_cluster_node_pool" "user_pool" {

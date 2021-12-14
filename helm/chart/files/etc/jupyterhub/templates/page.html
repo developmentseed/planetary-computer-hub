@@ -283,29 +283,23 @@
     <div class="ms-CommandBar-mainArea">
 
       <div id="uhfLogo" class="ms-CommandButton ms-CommandButton--pivot">
-        <a class=" ms-CommandButton-button" href="https://www.microsoft.com" aria-label="Microsoft" style="height: 100%; width: 113px; outline-offset: -2px;"> 
-          <img alt="" itemprop="logo" src="https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE1Mu3b?ver=5c31" role="presentation" aria-hidden="true" style="max-width: none; width: 108px;" /> <span class="ms-CommandButton-label"></span></a>
+        <a class=" ms-CommandButton-button" href="" aria-label="Microsoft" style="height: 100%; width: 113px; outline-offset: -2px;">
+          <img alt="" itemprop="logo" src="https://dep-prototype.westeurope.cloudapp.azure.com/storage/staticassets/logo.png" role="presentation" aria-hidden="true" style="max-width: none; width: 108px;" /> <span class="ms-CommandButton-label"></span></a>
       </div>
 
       <span style="display: inline-block; font-size: 23.5px; font-weight: 600; margin-top: 3px; margin-right: 6px; margin-left: 22.5px;">|</span>
 
       <div class="ms-CommandButton ms-CommandButton--pivot site-name-cmd" >
-        <a class="ms-CommandButton-button" href="https://planetarycomputer.microsoft.com/" >
+        <a class="ms-CommandButton-button" href="" >
           <span class="site-name ms-CommandButton-label">
-            Planetary Computer
+            Digital Earth Pacific
           </span>
         </a>
       </div>
 
       <div class="ms-CommandButton ms-CommandButton--pivot">
-        <a class="ms-CommandButton-button" href="https://planetarycomputer.microsoft.com/explore">
+        <a class="ms-CommandButton-button" href="https://depexplorer.z6.web.core.windows.net/">
           <span class="ms-CommandButton-label">Explore</span>
-        </a>
-      </div>
-
-      <div class="ms-CommandButton ms-CommandButton--pivot">
-        <a class="ms-CommandButton-button" href="https://planetarycomputer.microsoft.com/catalog">
-          <span class="ms-CommandButton-label">Data Catalog</span>
         </a>
       </div>
 
@@ -353,37 +347,7 @@
           {% endblock nav_bar_left_items %}
         </ul>
 
-      {% else %}
-      <div class="ms-CommandButton ms-CommandButton--pivot">
-        <button class="ms-CommandButton-button">
-          <span class="ms-CommandButton-label">Hub</span>
-        </button>
-        {% endif %}
-      </div>
-
-      <div class="ms-CommandButton ms-CommandButton--pivot">
-        <a class="ms-CommandButton-button" href="https://planetarycomputer.microsoft.com/applications">
-          <span class="ms-CommandButton-label">Applications</span>
-        </a>
-      </div>
-
-      <div class="ms-CommandButton ms-CommandButton--pivot">
-        <a class="ms-CommandButton-button" href="https://planetarycomputer.microsoft.com/docs/overview/about">
-          <span class="ms-CommandButton-label">Documentation</span>
-        </a>
-      </div>
-
-      <div class="ms-CommandButton ms-CommandBar-overflowButton ms-CommandButton--noLabel">
-        <button class="ms-CommandButton-button">
-          <span class="ms-CommandButton-icon"><i class="ms-Icon ms-Icon--More"></i></span>
-          <span class="ms-CommandButton-label"></span>
-        </button>
-        <ul class="ms-ContextualMenu is-opened">
-          <li class="ms-ContextualMenu-item">
-            <a class="ms-ContextualMenu-link" tabindex="1">Folder</a>
-            <i class="ms-Icon ms-Icon--Folder"></i>
-          </li>
-        </ul>
+      {% else %} {% endif %}
       </div>
     </div>
   </div>
@@ -419,5 +383,4 @@
 {% endblock %}
 
 {% block footer %}
-<footer class="context-uhf"><div class="c-uhff-base grid-content"><nav aria-label="Microsoft corporate links"><ul class="c-list f-bare" data-m="{&quot;cN&quot;:&quot;Corp links_cont&quot;,&quot;cT&quot;:&quot;Container&quot;,&quot;id&quot;:&quot;c7c1c1m1r1a2&quot;,&quot;sN&quot;:7,&quot;aN&quot;:&quot;c1c1m1r1a2&quot;}"><li id="c-uhff-footer_sitemap"><a class="c-uhff-link" href="https://www.microsoft.com/en-us/sitemap1.aspx" data-mscc-ic="false" data-m="{&quot;cN&quot;:&quot;Footer_Sitemap_nav&quot;,&quot;id&quot;:&quot;n1c7c1c1m1r1a2&quot;,&quot;sN&quot;:1,&quot;aN&quot;:&quot;c7c1c1m1r1a2&quot;}">Sitemap</a></li><li id="c-uhff-footer_contactus"><a class="c-uhff-link" href="https://support.microsoft.com/contactus" data-mscc-ic="false" data-m="{&quot;cN&quot;:&quot;Footer_ContactUs_nav&quot;,&quot;id&quot;:&quot;n2c7c1c1m1r1a2&quot;,&quot;sN&quot;:2,&quot;aN&quot;:&quot;c7c1c1m1r1a2&quot;}">Contact Microsoft</a></li><li id="c-uhff-footer_privacyandcookies"><a class="c-uhff-link" href="https://go.microsoft.com/fwlink/?LinkId=521839" data-mscc-ic="false" data-m="{&quot;cN&quot;:&quot;Footer_PrivacyandCookies_nav&quot;,&quot;id&quot;:&quot;n3c7c1c1m1r1a2&quot;,&quot;sN&quot;:3,&quot;aN&quot;:&quot;c7c1c1m1r1a2&quot;}">Privacy </a></li><li id="c-uhff-footer_termsofuse"><a class="c-uhff-link" href="https://go.microsoft.com/fwlink/?LinkID=206977" data-mscc-ic="false" data-m="{&quot;cN&quot;:&quot;Footer_TermsOfUse_nav&quot;,&quot;id&quot;:&quot;n5c7c1c1m1r1a2&quot;,&quot;sN&quot;:5,&quot;aN&quot;:&quot;c7c1c1m1r1a2&quot;}">Terms of use</a></li><li id="c-uhff-footer_trademarks"><a class="c-uhff-link" href="https://www.microsoft.com/trademarks" data-mscc-ic="false" data-m="{&quot;cN&quot;:&quot;Footer_Trademarks_nav&quot;,&quot;id&quot;:&quot;n6c7c1c1m1r1a2&quot;,&quot;sN&quot;:6,&quot;aN&quot;:&quot;c7c1c1m1r1a2&quot;}">Trademarks</a></li><li id="c-uhff-footer_safetyandeco"><a class="c-uhff-link" href="https://www.microsoft.com/en-us/devices/safety-and-eco " data-mscc-ic="false" data-m="{&quot;cN&quot;:&quot;Footer_SafetyAndEco_nav&quot;,&quot;id&quot;:&quot;n7c7c1c1m1r1a2&quot;,&quot;sN&quot;:7,&quot;aN&quot;:&quot;c7c1c1m1r1a2&quot;}">Safety &amp; eco</a></li><li id="c-uhff-footer_aboutourads"><a class="c-uhff-link" href="https://choice.microsoft.com" data-mscc-ic="false" data-m="{&quot;cN&quot;:&quot;Footer_AboutourAds_nav&quot;,&quot;id&quot;:&quot;n8c7c1c1m1r1a2&quot;,&quot;sN&quot;:8,&quot;aN&quot;:&quot;c7c1c1m1r1a2&quot;}">About our ads</a></li><li class="x-hidden-focus"> © Microsoft 2021</li></ul></nav></div></footer>
 {% endblock footer %}

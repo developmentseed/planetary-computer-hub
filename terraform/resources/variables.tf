@@ -140,10 +140,8 @@ variable "kbatch_proxy_url" {
 # Local variables
 
 locals {
-  stack_id          = "pcc"
+  stack_id          = "dep"
   location          = lower(replace(var.region, " ", ""))
-  prefix            = "${local.stack_id}-${local.location}"
-  namespaced_prefix = "${local.stack_id}-${var.environment}"
-  # maybe_staging_prefix is "pcc-staging" for staging, and "pcc" for prod
-  maybe_staging_prefix = var.environment == "staging" ? local.namespaced_prefix : local.prefix
+  prefix            = "dep-pc"
+  namespaced_prefix = "dep-pc"
 }

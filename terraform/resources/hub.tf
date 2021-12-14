@@ -30,16 +30,6 @@ resource "helm_release" "dhub" {
     value = var.user_placeholder_replicas
   }
 
-  # set {
-  #   name  = "daskhub.jupyterhub.hub.config.JupyterHub.api_tokens"
-  #   value = "${random_password.test_bot_token.result}=pangeotestbot@microsoft.com"
-  # }
-
-  set {
-    name  = "daskhub.jupyterhub.hub.config.GenericOAuthenticator.oauth_callback_url"
-    value = "https://${var.jupyterhub_host}/compute/hub/oauth_callback"
-  }
-
   set {
     name  = "daskhub.jupyterhub.hub.config.GenericOAuthenticator.client_secret"
     value = data.azurerm_key_vault_secret.id_client_secret.value
@@ -48,11 +38,6 @@ resource "helm_release" "dhub" {
   set {
     name  = "daskhub.jupyterhub.hub.extraEnv.AZURE_CLIENT_SECRET"
     value = data.azurerm_key_vault_secret.azure_client_secret.value
-  }
-
-  set {
-    name  = "daskhub.jupyterhub.hub.extraEnv.PC_ID_TOKEN"
-    value = data.azurerm_key_vault_secret.pc_id_token.value
   }
 
   set {
@@ -145,11 +130,6 @@ resource "helm_release" "dhub" {
 
 }
 
-data "azurerm_storage_account" "pc-compute" {
-  name                = "${replace(local.prefix, "-", "")}storage"
-  resource_group_name = "${local.prefix}-shared-rg"
-}
-
 resource "kubernetes_secret" "pc-compute-fileshare" {
   metadata {
     name      = "driven-data-file-share"
@@ -157,8 +137,8 @@ resource "kubernetes_secret" "pc-compute-fileshare" {
   }
 
   data = {
-    azurestorageaccountname = data.azurerm_storage_account.pc-compute.name
-    azurestorageaccountkey  = data.azurerm_storage_account.pc-compute.primary_access_key
+    azurestorageaccountname = azurerm_storage_account.pc-compute.name
+    azurestorageaccountkey  = azurerm_storage_account.pc-compute.primary_access_key
   }
 }
 
@@ -172,7 +152,7 @@ resource "kubernetes_secret" "pc-compute-fileshare-default" {
   }
 
   data = {
-    azurestorageaccountname = data.azurerm_storage_account.pc-compute.name
-    azurestorageaccountkey  = data.azurerm_storage_account.pc-compute.primary_access_key
+    azurestorageaccountname = azurerm_storage_account.pc-compute.name
+    azurestorageaccountkey  = azurerm_storage_account.pc-compute.primary_access_key
   }
 }

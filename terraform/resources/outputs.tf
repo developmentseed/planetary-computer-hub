@@ -16,11 +16,6 @@ output "azure_client_secret" {
   sensitive = true
 }
 
-output "pc_id_token" {
-  value     = data.azurerm_key_vault_secret.pc_id_token.value
-  sensitive = true
-}
-
 output "jupyterhub_proxy_secret_token" {
   value     = data.azurerm_key_vault_secret.jupyterhub_proxy_secret_token.value
   sensitive = true
