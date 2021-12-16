@@ -29,6 +29,22 @@ fi
 kubectl apply -f kubernetes/dep-private-common.storageclass.yaml
 kubectl apply -f kubernetes/common-file-pvc.pvc.yaml
 
-#git clone git@github.com:developmentseed/titiler.git
-cd titiler/deployment/k8s || exit
-helm install titiler titiler -f titiler/Chart.yaml --set fullnameOverride="titiler" --set service.type="LoadBalancer"
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.0.4/deploy/static/provider/cloud/deploy.yaml
+kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.6.0/cert-manager.yaml
+kubectl apply -f kubernetes/letsencrypt-staging.issuer.yaml
+kubectl apply -f kubernetes/letsencrypt-production.issuer.yaml
+kubectl apply -f kubernetes/titiler.ingress.yaml
+
+FOLDER="titiler"
+URL="git@github.com:developmentseed/titiler.git"
+if [ ! -d "$FOLDER" ] ; then
+    git clone $URL $FOLDER
+else
+    cd "$FOLDER"
+    git pull $URL
+fi
+
+cd "deployment/k8s" || exit
+KUBECONFIG=~/.kube/config
+helm upgrade --install titiler titiler -f titiler/Chart.yaml --set fullnameOverride="titiler"
+
