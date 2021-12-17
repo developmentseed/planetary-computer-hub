@@ -20,25 +20,6 @@ _**NOTE:** All `make` commands should be run from the **root** of the repository
 To deploy this project, run `make deploy`
 
 ##Components
-###Kubernetes
-####comon-file-pvc.pvc.yaml
-A PersistentVolumeClaim manifest to connect to the DEP common private storage
-
-####dep-private-common.storageclass.yaml
-A StorageClast manifest to provide access to the DEP common private storage
-
-####letsencrypt-production.issuer.yaml
-A CertManager Issuer manifest for production use against LetsEncrypt
-
-####letsencrypt-staging.issuer.yaml
-A CertManager Issuer manifest for experimental/staging use against LetsEncrypt
-
-####titiler.ingress.yaml
-An Ingress manifest to provide ingress of traffic and TLS for TiTiler
-
-####titiler.service.yaml
-A Service manifest to provide and endpoint for TiTiler traffic inside the cluster
-
 
 ###Terraform
 ####aks.tf
@@ -67,3 +48,19 @@ Sets up the storage accounts and containers for the common and user data
 
 ####vnet.tf
 Sets up the VNets and Subnets for the AKS nodes and storage
+
+###Kubernetes
+####comon-file-pvc.pvc.yaml
+A PersistentVolumeClaim manifest to connect to the DEP common private storage
+
+####dep-private-common.storageclass.yaml
+A StorageClast manifest to provide access to the DEP common private storage
+
+####letsencrypt-production.issuer.yaml
+A CertManager Issuer manifest for production use against LetsEncrypt
+
+####letsencrypt-staging.issuer.yaml
+A CertManager Issuer manifest for experimental/staging use against LetsEncrypt
+
+####titiler.ingress.yaml
+An Ingress manifest to provide ingress of traffic and TLS for TiTiler
