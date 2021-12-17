@@ -19,48 +19,48 @@ A person managing this installation or performing a deployment should have knowl
 _**NOTE:** All `make` commands should be run from the **root** of the repository_
 To deploy this project, run `make deploy`
 
-##Components
+## Components
 
-###Terraform
-####aks.tf
+### Terraform
+#### aks.tf
 Handles deployment of the AKS backplane and node pools
 
-####hub.tf
+#### hub.tf
 Handles the helm releases for JupyterHub and accessories
 
-####keyvault.tf
+#### keyvault.tf
 Provides data elements to retrieve various keys from the keyvault.
 
-####logs.tf
+#### logs.tf
 Handles deployment of log analytics for the system
 
-####outputs.tf
+#### outputs.tf
 Provides outputs of information for use in other parts of the deployment
 
-####providers.tf
+#### providers.tf
 Sets up the Terraform providers for the deployment 
 
-####rg.tf
+#### rg.tf
 Sets up the resource group for the infrastructure elements
 
-####storage.tf
+#### storage.tf
 Sets up the storage accounts and containers for the common and user data
 
-####vnet.tf
+#### vnet.tf
 Sets up the VNets and Subnets for the AKS nodes and storage
 
-###Kubernetes
-####comon-file-pvc.pvc.yaml
+### Kubernetes
+#### comon-file-pvc.pvc.yaml
 A PersistentVolumeClaim manifest to connect to the DEP common private storage
 
-####dep-private-common.storageclass.yaml
+#### dep-private-common.storageclass.yaml
 A StorageClast manifest to provide access to the DEP common private storage
 
-####letsencrypt-production.issuer.yaml
+#### letsencrypt-production.issuer.yaml
 A CertManager Issuer manifest for production use against LetsEncrypt
 
-####letsencrypt-staging.issuer.yaml
+#### letsencrypt-staging.issuer.yaml
 A CertManager Issuer manifest for experimental/staging use against LetsEncrypt
 
-####titiler.ingress.yaml
+#### titiler.ingress.yaml
 An Ingress manifest to provide ingress of traffic and TLS for TiTiler
