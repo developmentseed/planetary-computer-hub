@@ -19,8 +19,10 @@ A person managing this installation or performing a deployment should have knowl
 * [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
 * [Terraform](https://www.terraform.io/downloads.html)
 * [Helm](https://helm.sh/docs/intro/install/)
+
 ### Deploy
 _**NOTE:** All `make` commands should be run from the **root** of the repository_
+
 To deploy this project, run `make deploy`
 
 ## Components
