@@ -20,6 +20,16 @@ _**NOTE:** All `make` commands should be run from the **root** of the repository
 To deploy this project, run `make deploy`
 
 ## Components
+### Scripts
+#### deploy.sh
+Handles deployment of the environment by:
+- Orchestrating the terraform deployment
+- Getting credentials to perform cluster operations
+- Setting up access keys for the depprivate common storage
+- Installing the Kubernetes CSI driver for storage access.
+- Installing the NGINX Ingress controller to the cluster
+- Installing cert manager and configuring it for LetsEncrypt
+- Installing titiler to the cluster via helm
 
 ### Terraform
 #### aks.tf
