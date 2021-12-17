@@ -1,16 +1,20 @@
 # Digital Earth Pacific - Planetary Computer Hub
-This is a specific deployment of Microsoft's Planetary Computer, and has been adapted from [Microsoft's Planetary Computer repo](https://github.com/microsoft/planetary-computer-hub)
+This is a specific deployment of Microsoft's Planetary Computer, and has been adapted from 
+[Microsoft's Planetary Computer repo](https://github.com/microsoft/planetary-computer-hub) to suit a single streamlined production deployment.
+
 For specifics not covered here, please refer to the upstream documentation.
 
 ## Deployment
 ### Prerequisites
 #### Skills
 A person managing this installation or performing a deployment should have knowledge of the following tools/technologies:
+* Git [Docs](https://git-scm.com/doc)
 * Azure [Docs](https://docs.azure.com)
 * Kubernetes [Docs](https://kubernetes.io/docs/home/)
 * Helm [Docs](https://helm.sh/docs/)
 
 #### Tools
+* Git
 * [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
 * [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
 * [Terraform](https://www.terraform.io/downloads.html)
