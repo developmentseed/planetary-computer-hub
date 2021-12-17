@@ -1,6 +1,8 @@
 # Digital Earth Pacific - Planetary Computer Hub
-This is a specific deployment of Microsoft's Planetary Computer, and has been adapted from 
+This is a specific deployment of Microsoft's Planetary Computer for Digital Earth Pacific, and has been adapted from 
 [Microsoft's Planetary Computer repo](https://github.com/microsoft/planetary-computer-hub) to suit a single streamlined production deployment.
+
+Modifications and initial deployment were done by [Development Seed](https://developmentseed.org)
 
 For specifics not covered here, please refer to the upstream documentation.
 
